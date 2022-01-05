@@ -51,7 +51,7 @@ def chessGame():
             else:
                 print(colored("That move is Illegal", "red"))
                 print("Move again...", "red")
-                loss()
+                move(board)
 
     def tie():
         print("It is no longer possible to Checkmate. The game is henceforth a Draw...")
