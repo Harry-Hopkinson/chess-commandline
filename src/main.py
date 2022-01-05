@@ -21,7 +21,6 @@ def loss():
 
 def chessGame():
     global board
-
     def move(board):
         if board.turn == True:
             print(colored(str(board), attrs=["bold"]))
@@ -40,4 +39,18 @@ def chessGame():
         if playerMove in str(board.legal_moves).lower():
             if board.is_check():
                 if board.turn == False:
-                    print(colored(board))
+                    print(colored("Black is in Check!", "green"))
+                elif board.turn == True:
+                    print(colored("White is in Check!", "green"))
+            else:
+               print(colored("That move is Legal", "green"))
+        else:
+            if playerMove in str(board.pseudo_legal_moves).lower():
+                print(colored("You are in Check, or Pinned. That move is Illegal", "red"))
+                loss()
+            else:
+                print(colored("That move is Illegal", "red"))
+                loss()
+
+    def tie():
+        print("It is no longer possible to Checkmate. The game is henceforth a Draw...")
