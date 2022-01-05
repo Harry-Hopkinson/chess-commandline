@@ -54,3 +54,11 @@ def chessGame():
 
     def tie():
         print("It is no longer possible to Checkmate. The game is henceforth a Draw...")
+        newGame = input("Play Again? (y,n): ")
+        if newGame == "y":
+            board.clear_stack()
+            chessGame()
+        elif newGame == "n":
+            sys.exit()
+    
+    print("")
