@@ -29,4 +29,15 @@ def chessGame():
         elif board.turn == False:
             print(colored(str(board)[::-1], attrs=["bold"]))
             playerMove = input("Black to Move: ")
-        if 
+        if playerMove.lower() == "resign":
+            loss()
+        legalMoves(playerMove)
+        board = board.push_san(playerMove)
+        return board
+    
+    def legalMoves(playerMove):
+        playerMove = str(playerMove).lower()
+        if playerMove in str(board.legal_moves).lower():
+            if board.is_check():
+                if board.turn == False:
+                    print(colored(board))
