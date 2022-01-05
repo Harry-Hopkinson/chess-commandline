@@ -50,6 +50,7 @@ def chessGame():
                 loss()
             else:
                 print(colored("That move is Illegal", "red"))
+                print("Move again...", "red")
                 loss()
 
     def tie():
@@ -66,7 +67,7 @@ def chessGame():
     print(colored("""Rules:
     1. Normal Chess rules apply
     2. You can only use algebraic notation (FIDE standard)
-    3. Try not to do illegal moves""",'blue','on_grey'))
+    3. Try not to do illegal movesa\n""",'white'))
 
     while True:
         board = chess.Board(board.fen())
@@ -77,7 +78,4 @@ def chessGame():
             elif board.is_stalemate() or board.is_insufficient_material():
                 tie()
 
-try:
-    chessGame()
-except:
-    print("The Game Failed to Launch...")       
+chessGame()     
