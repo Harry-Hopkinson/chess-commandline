@@ -1,10 +1,10 @@
 # Running
 
-# Run with the terminal
+## Run with the terminal
 ```
 cd src
 python main.py
 ```
 
-# Cancel Program
+## Cancel Program
 Control + C
