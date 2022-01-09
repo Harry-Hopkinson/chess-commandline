@@ -1,5 +1,6 @@
 # Requirements
 
-1. Python and Pip Installed
-2. ``` pip install chess ```
-3. ``` pip install termcolor ```
+1. Python Installed
+2. Pip Installed
+3. ``` pip install chess ```
+4. ``` pip install termcolor ```

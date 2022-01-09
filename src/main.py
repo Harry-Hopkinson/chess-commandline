@@ -4,6 +4,8 @@ import sys
 
 isLegal = True
 board = chess.Board()
+moveList = ""
+round = 1
 
 def loss():
     global board
@@ -21,6 +23,9 @@ def loss():
 
 def chessGame():
     global board
+    global moveList
+    global round
+
     def move(board):
         if board.turn == True:
             print(colored(str(board), attrs=["bold"]))
@@ -44,6 +49,8 @@ def chessGame():
                     print(colored("White is in Check!", "green"))
             else:
                print(colored("That move is Legal", "green"))
+               moveList += playerMove
+               print(moveList)
         else:
             if playerMove in str(board.pseudo_legal_moves).lower():
                 print(colored("You are in Check, or Pinned. That move is Illegal", "red"))
