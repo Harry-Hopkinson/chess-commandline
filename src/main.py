@@ -43,6 +43,7 @@ def chessGame():
     def legalMoves(playerMove):
         global moveList
         global firstRun
+        global round
 
         playerMove = str(playerMove).lower()
         if playerMove in str(board.legal_moves).lower():
@@ -52,15 +53,25 @@ def chessGame():
                 elif board.turn == True:
                     print(colored("White is in Check!", "green"))
             else:
-                if firstRun:
-                    print(colored("That move is Legal", "green"))
-                    moveList += playerMove
-                    print(moveList)
+
+                if round % 2 != 0:
+                    if firstRun:
+                        print(colored("That move is Legal", "green"))
+                        moveList += str(round) + ": " + playerMove + " "
+                        print(moveList)
+                    else:
+                        round -= 1
+                        print(colored("That move is Legal", "green"))
+                        moveList += str(round) + ": " + playerMove + " "
+                        print(moveList)
+                    firstRun = False
+                    round += 1
                 else:
                     print(colored("That move is Legal", "green"))
-                    moveList += " " + playerMove
+                    round -= 1
+                    moveList += str(round) + ": " + playerMove + " "
                     print(moveList)
-                firstRun = False
+                    round += 2
         else:
             if playerMove in str(board.pseudo_legal_moves).lower():
                 print(colored("You are in Check, or Pinned. That move is Illegal", "red"))
