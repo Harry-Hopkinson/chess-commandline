@@ -12,3 +12,7 @@ python main.py
 
 ### Cancel Program
 Control + C
+
+# Usage
+
+Use chess notation with Capital Letters e.g Nf3 or Exd4.
