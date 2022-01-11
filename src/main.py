@@ -12,8 +12,10 @@ def loss():
     global board
 
     if board.turn == True:
+        print(colored("White has been Checkmated!", "red"))
         print(colored("White Lost", "red"))
     else:
+        print(colored("Black has been Checkmated!", "red"))
         print(colored("Black Lost", "red"))
 
     newGame = input("Play Again? (y/n): ")
@@ -105,5 +107,4 @@ def chessGame():
                 loss()
             elif board.is_stalemate() or board.is_insufficient_material():
                 tie()
-
 chessGame()
