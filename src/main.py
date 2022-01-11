@@ -22,73 +22,81 @@ def loss():
     elif newGame == "n":
         sys.exit()
 
-def chessGame():
-    global board
-    global moveList
-    global round
+class chessGameClass:
+    def __init__(self):
+        self.board = chess.Board()
+        self.moveList = ""
+        self.round = 1
+        self.firstRun = True
 
-    def move(board):
+    def loss(self):
+        global board
         if board.turn == True:
-            print(colored(str(board), attrs=["bold"]))
-            playerMove = input("White to Move: ")
-        elif board.turn == False:
-            print(colored(str(board)[::-1], attrs=["bold"]))
-            playerMove = input("Black to Move: ")
-        if playerMove.lower() == "resign":
-            loss()
-        legalMoves(playerMove)
-        board = board.push_san(playerMove)
-        return board
-    
-    def legalMoves(playerMove):
-        global moveList
-        global firstRun
-        global round
-
-        playerMove = str(playerMove).lower()
-        if playerMove in str(board.legal_moves).lower():
-            if board.is_check():
-                if board.turn == False:
-                    print(colored("Black is in Check!", "green"))
-                elif board.turn == True:
-                    print(colored("White is in Check!", "green"))
-            else:
-
-                if round % 2 != 0:
-                    if firstRun:
-                        print(colored("That move is Legal", "green"))
-                        moveList += str(round) + ": " + playerMove + ""
-                        print(moveList)
-                    else:
-                        round -= 1
-                        print(colored("That move is Legal", "green"))
-                        moveList += str(round) + ": " + playerMove + ""
-                        print(moveList)
-                    firstRun = False
-                    round += 1
-                else:
-                    print(colored("That move is Legal", "green"))
-                    round -= 1
-                    moveList += " " + playerMove + " "
-                    print(moveList)
-                    round += 2
+            print(colored("White Lost", "red"))
         else:
-            if playerMove in str(board.pseudo_legal_moves).lower():
-                print(colored("You are in Check, or Pinned. That move is Illegal", "red"))
-                loss()
-            else:
-                print(colored("That move is Illegal", "red"))
-                print("Move again...", "red")
-                move(board)
+            print(colored("Black Lost", "red"))
 
-    def tie():
-        print("It is no longer possible to Checkmate. The game is henceforth a Draw...")
-        newGame = input("Play Again? (y,n): ")
+        newGame = input("Play Again? (y/n): ")
         if newGame == "y":
-            board.clear_stack()
+            board.clearStack()
             chessGame()
         elif newGame == "n":
             sys.exit()
+
+    def chessGame(self):
+        def move(board):
+            if board.turn == True:
+                print(colored(str(board), attrs=["bold"]))
+                playerMove = input("White to Move: ")
+            elif board.turn == False:
+                print(colored(str(board)[::-1], attrs=["bold"]))
+                playerMove = input("Black to Move: ")
+            if playerMove.lower() == "resign":
+                self.loss()
+            legalMoves(playerMove)
+            board = board.push_san(playerMove)
+            return board
+        
+        def legalMoves(playerMove):
+            global moveList
+            global firstRun
+            global round
+
+            playerMove = str(playerMove).lower()
+            if playerMove in str(board.legal_moves).lower():
+                if board.is_check():
+                    if board.turn == False:
+                        print(colored("Black is in Check!", "green"))
+                    elif board.turn == True:
+                        print(colored("White is in Check!", "green"))
+                else:
+                    if round % 2 != 0:
+                        if firstRun:
+                            print(colored("That move is Legal", "green"))
+                            moveList += str(round) + ": " + playerMove + ""
+                            print(moveList)
+                        else:
+                            round -= 1
+                            print(colored("That move is Legal", "green"))
+                            moveList += str(round) + ": " + player
+            
+            else:
+                if playerMove in str(board.pseudo_legal_moves).lower():
+                    print(colored("You are in Check, or Pinned. That move is Illegal", "red"))
+                    loss()
+                else:
+                    print(colored("That move is Illegal", "red"))
+                    print("Move again...", "red")
+                    move(board)
+
+        def tie():
+            print("It is no longer possible to Checkmate. The game is henceforth a Draw...")
+            newGame = input("Play Again? (y,n): ")
+            if newGame == "y":
+                board.clear_stack()
+                chessGame()
+            elif newGame == "n":
+                sys.exit()
     
     print('\033[2J')
     print(colored("Chess in the Console!", "blue"))
@@ -99,11 +107,10 @@ def chessGame():
 
     while True:
         board = chess.Board(board.fen())
-        move(board)
+        chessGameClass.move(board)
         if board.is_game_over():
             if board.is_checkmate():
                 loss()
             elif board.is_stalemate() or board.is_insufficient_material():
                 tie()
-
-chessGame()     
+chessGameClass.chessGame()
