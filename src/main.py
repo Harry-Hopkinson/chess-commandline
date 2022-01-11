@@ -10,6 +10,7 @@ firstRun = True
 
 def loss():
     global board
+    
     if board.turn == True:
         print(colored("White Lost", "red"))
     else:
@@ -53,7 +54,6 @@ def chessGame():
                 elif board.turn == True:
                     print(colored("White is in Check!", "green"))
             else:
-
                 if round % 2 != 0:
                     if firstRun:
                         print(colored("That move is Legal", "green"))
@@ -106,4 +106,4 @@ def chessGame():
             elif board.is_stalemate() or board.is_insufficient_material():
                 tie()
 
-chessGame()     
+chessGame()
