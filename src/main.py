@@ -10,7 +10,7 @@ firstRun = True
 
 def loss():
     global board
-    
+
     if board.turn == True:
         print(colored("White Lost", "red"))
     else:
