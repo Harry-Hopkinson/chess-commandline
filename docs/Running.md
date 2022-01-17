@@ -8,3 +8,4 @@ python main.py
 
 ## Cancel Program
 Control + C
+Command + C
