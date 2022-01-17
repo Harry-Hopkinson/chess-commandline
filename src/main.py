@@ -7,10 +7,11 @@ board = chess.Board()
 moveList = ""
 round = 1
 firstRun = True
+diff = 0
 
 def loss():
     global board
-
+    
     if board.turn == True:
         print(colored("White has been Checkmated!", "red"))
         print(colored("White Lost", "red"))
@@ -47,6 +48,7 @@ def chessGame():
         global moveList
         global firstRun
         global round
+        global diff
 
         playerMove = str(playerMove).lower()
         if playerMove in str(board.legal_moves).lower():
@@ -61,11 +63,13 @@ def chessGame():
                         print(colored("That move is Legal", "green"))
                         moveList += str(round) + ": " + playerMove + " "
                         print(moveList)
+                        firstRun = False
                     else:
                         print(colored("That move is Legal", "green"))
-                        moveList += str(round - 1) + ": " + playerMove + " "
+                        moveList += str(round - diff) + ": " + playerMove + " "
                         print(moveList)
                     round += 1
+                    diff += 1
                 else:
                     print(colored("That move is Legal", "green"))
                     moveList += " " + playerMove + " "
