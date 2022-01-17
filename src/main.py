@@ -59,25 +59,23 @@ def chessGame():
                 if round % 2 != 0:
                     if firstRun:
                         print(colored("That move is Legal", "green"))
-                        moveList += str(round) + ": " + playerMove + ""
+                        moveList += str(round) + ": " + playerMove + " "
                         print(moveList)
                     else:
-                        round -= 1
                         print(colored("That move is Legal", "green"))
-                        moveList += str(round) + ": " + playerMove + ""
+                        moveList += str(round - 1) + ": " + playerMove + " "
                         print(moveList)
-                    firstRun = False
                     round += 1
                 else:
                     print(colored("That move is Legal", "green"))
-                    round -= 1
                     moveList += " " + playerMove + " "
                     print(moveList)
-                    round += 2
+                    round += 1
         else:
             if playerMove in str(board.pseudo_legal_moves).lower():
                 print(colored("You are in Check, or Pinned. That move is Illegal", "red"))
-                loss()
+                print("Move again...", "red")
+                move(board)
             else:
                 print(colored("That move is Illegal", "red"))
                 print("Move again...", "red")
