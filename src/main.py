@@ -113,5 +113,6 @@ def chessGame():
                 loss()
             elif board.is_stalemate() or board.is_insufficient_material():
                 tie()
-if main == "__main__":
+
+if chessGame() == "__main__":
     chessGame()
