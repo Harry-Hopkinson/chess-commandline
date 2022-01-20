@@ -94,6 +94,8 @@ def chessGame():
             board.clear_stack()
             chessGame()
         elif newGame == "n":
+            print(colored("Thanks for playing!", "red"))
+            print(colored("Exiting Program...", "red"))
             sys.exit()
     
     print('\033[2J') # clears the screen
