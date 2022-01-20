@@ -1,4 +1,3 @@
-
 import chess
 from termcolor import colored
 import sys
