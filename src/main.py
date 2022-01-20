@@ -1,3 +1,4 @@
+
 import chess
 from termcolor import colored
 import sys
@@ -11,7 +12,6 @@ diff = 0
 
 def loss():
     global board
-    
     if board.turn == True:
         print(colored("White has been Checkmated!", "red"))
         print(colored("White Lost", "red"))
@@ -98,7 +98,7 @@ def chessGame():
             print(colored("Exiting Program...", "red"))
             sys.exit()
     
-    print('\033[2J') # clears the screen
+    print('\033[2J') # clears the console
     print(colored("Chess in the Console!", "blue"))
     print(colored("""Rules:
     1. Normal Chess rules apply
