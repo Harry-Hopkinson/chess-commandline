@@ -21,9 +21,11 @@ def loss():
 
     newGame = input("Play Again? (y/n): ")
     if newGame == "y":
-        board.clearStack()
+        board.clear_stack()
         chessGame()
     elif newGame == "n":
+        print(colored("Thanks for playing!", "red"))
+        print(colored("Exiting Program...", "red"))
         sys.exit()
 
 def chessGame():
@@ -49,7 +51,7 @@ def chessGame():
         global firstRun
         global round
         global diff
-
+        
         playerMove = str(playerMove).lower()
         if playerMove in str(board.legal_moves).lower():
             if board.is_check():
@@ -94,13 +96,14 @@ def chessGame():
         elif newGame == "n":
             sys.exit()
     
-    print('\033[2J')
+    print('\033[2J') # clears the screen
     print(colored("Chess in the Console!", "blue"))
     print(colored("""Rules:
     1. Normal Chess rules apply
     2. You can only use algebraic notation (FIDE standard)
-    3. Try not to do illegal movesa\n""",'white'))
-
+    3. Use the Algebraic Notation with a Starting Capital Letter for a major piece - if a minor piece use a lowercase character e.g Nxd4 or e4
+    4. Try not to do illegal moves\n""",'white'))
+    
     while True:
         board = chess.Board(board.fen())
         move(board)
@@ -109,4 +112,5 @@ def chessGame():
                 loss()
             elif board.is_stalemate() or board.is_insufficient_material():
                 tie()
-chessGame()
+if main == "__main__":
+    chessGame()
