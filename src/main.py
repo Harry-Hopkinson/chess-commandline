@@ -9,6 +9,7 @@ round = 1
 firstRun = True
 diff = 0
 
+
 def loss():
     global board
     if board.turn == True:
@@ -27,6 +28,7 @@ def loss():
         print(colored("Exiting Program...", "red"))
         sys.exit()
 
+
 def chessGame():
     global board
     global moveList
@@ -44,13 +46,13 @@ def chessGame():
         legalMoves(playerMove)
         board = board.push_san(playerMove)
         return board
-    
+
     def legalMoves(playerMove):
         global moveList
         global firstRun
         global round
         global diff
-        
+
         playerMove = str(playerMove).lower()
         if playerMove in str(board.legal_moves).lower():
             if board.is_check():
@@ -78,7 +80,8 @@ def chessGame():
                     round += 1
         else:
             if playerMove in str(board.pseudo_legal_moves).lower():
-                print(colored("You are in Check, or Pinned. That move is Illegal", "red"))
+                print(
+                    colored("You are in Check, or Pinned. That move is Illegal", "red"))
                 print("Move again...", "red")
                 move(board)
             else:
@@ -96,15 +99,15 @@ def chessGame():
             print(colored("Thanks for playing!", "red"))
             print(colored("Exiting Program...", "red"))
             sys.exit()
-    
-    print('\033[2J') # clears the console
+
+    print('\033[2J')  # clears the console
     print(colored("Chess in the Console!", "blue"))
     print(colored("""Rules:
     1. Normal Chess rules apply
     2. You can only use algebraic notation (FIDE standard)
     3. Use the Algebraic Notation with a Starting Capital Letter for a major piece - if a minor piece use a lowercase character e.g Nxd4 or e4
-    4. Try not to do illegal moves\n""",'white'))
-    
+    4. Try not to do illegal moves\n""", 'white'))
+
     while True:
         board = chess.Board(board.fen())
         move(board)
@@ -113,6 +116,7 @@ def chessGame():
                 loss()
             elif board.is_stalemate() or board.is_insufficient_material():
                 tie()
+
 
 if chessGame() == "__main__":
     chessGame()
